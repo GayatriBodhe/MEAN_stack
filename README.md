@@ -44,7 +44,3 @@
    - Attach a callback function when the event is triggered.
 29. Using Node.js, create a program that transfers a file as an attachment on the web and enables browsers to download it using `express.js`.
 30. **Case Study:** MEAN Stack Application Development.
-
----
-
-This text is now ready to be added to your README file. Let me know if you need any modifications! 🚀
