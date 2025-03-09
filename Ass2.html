@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Employee Registration</h2>
+        <form id="employeeForm">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+            <span id="dobError" class="error"></span>
+            <br><br>
+            
+            <label for="joiningDate">Joining Date:</label>
+            <input type="date" id="joiningDate" name="joiningDate" required>
+            <span id="joiningDateError" class="error"></span>
+            <br><br>
+            
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary" required>
+            <span id="salaryError" class="error"></span>
+            <br><br>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("employeeForm").addEventListener("submit", function(event) {
+            let valid = true;
+            
+            let dob = new Date(document.getElementById("dob").value);
+            let joiningDate = new Date(document.getElementById("joiningDate").value);
+            let salary = document.getElementById("salary").value;
+            let today = new Date();
+            
+            document.getElementById("dobError").textContent = "";
+            document.getElementById("joiningDateError").textContent = "";
+            document.getElementById("salaryError").textContent = "";
+
+            let age = today.getFullYear() - dob.getFullYear();
+            let monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            if (age < 18) {
+                document.getElementById("dobError").textContent = "Employee must be at least 18 years old.";
+                valid = false;
+            }
+            
+            if (joiningDate <= dob) {
+                document.getElementById("joiningDateError").textContent = "Joining date must be after the Date of Birth.";
+                valid = false;
+            }
+            
+            if (salary <= 0) {
+                document.getElementById("salaryError").textContent = "Salary must be a positive number.";
+                valid = false;
+            }
+            
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
