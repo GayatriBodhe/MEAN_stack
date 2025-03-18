@@ -30,17 +30,13 @@
     <script>
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             let valid = true;
-            
             let email = document.getElementById("email").value;
             let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-            
             document.getElementById("emailError").textContent = "";
-            
             if (!emailPattern.test(email)) {
                 document.getElementById("emailError").textContent = "Invalid email format.";
                 valid = false;
             }
-            
             if (!valid) {
                 event.preventDefault();
             }
